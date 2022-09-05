@@ -22,10 +22,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//matchsPlayedPerYear(); 
-		//NumberOfMatchsWonOfAllTeams(); 
-		
-		//extraRunsConcededPerTeam2016();
+		matchsPlayedPerYear(); 
+		NumberOfMatchsWonOfAllTeams(); 
+		extraRunsConcededPerTeam2016();
 		topEconomicalBowler();
 	}
 
