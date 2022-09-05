@@ -182,6 +182,40 @@ public class Main {
 		Collections.sort(listEconomy);
 		for(int i=0;i<10;i++)System.out.println(listEconomy.get(i).name+":"+listEconomy.get(i).bowlerEconomy);
 	}
+	private static void teamWithMaximumTossWin() {
+		
+		String pathOfMatches="/home/manish/Desktop/matches.csv";
+		Scanner s;
+		HashMap<String,Integer> teamNameWithNoOfTossAsValue=new HashMap();
+		try {
+			s = new Scanner(new File(pathOfMatches));
+			while(s.hasNext()) {
+				String[] dataOfMatches=s.nextLine().split(",");
+					if(dataOfMatches[TOSS_WIN]=="toss_winner")continue;
+					else {
+						if(teamNameWithNoOfTossAsValue.containsKey(dataOfMatches[TOSS_WIN])) {
+							teamNameWithNoOfTossAsValue.put(dataOfMatches[TOSS_WIN],teamNameWithNoOfTossAsValue.get(dataOfMatches[TOSS_WIN])+1);
+						}else {
+							teamNameWithNoOfTossAsValue.put(dataOfMatches[TOSS_WIN],1);
+						}
+					}
+				}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Set<String>KeysOfHashap=teamNameWithNoOfTossAsValue.keySet();
+		int maximumToss=0;
+		String teamWithMaximumToss="";
+		for(String teamName:KeysOfHashap) {
+			if(teamNameWithNoOfTossAsValue.get(teamName)>maximumToss){
+				maximumToss=teamNameWithNoOfTossAsValue.get(teamName);
+				teamWithMaximumToss=teamName+":"+maximumToss;
+			}
+		}
+	System.out.println(teamWithMaximumToss);
+
+	}
 }
 class Economy implements Comparable<Economy>
 {
@@ -195,6 +229,5 @@ class Economy implements Comparable<Economy>
 	public int compareTo(Economy obj) {
 		if(this.bowlerEconomy>obj.bowlerEconomy)return 1;
 		else return -1;
-	
-		}
+	}
 }
